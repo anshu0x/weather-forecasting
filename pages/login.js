@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import logo from "../assets/logo.svg";
 import styles from "../styles/Home.module.css";
-import { Input, Button, Text, Grid } from "@nextui-org/react";
+import { Input, Button, Text, Grid, Checkbox, Row } from "@nextui-org/react";
 import { Mail } from "./components/Mail";
 import { Password } from "./components/Password";
 import Link from "next/link";
@@ -13,8 +13,6 @@ export default function Home() {
     initialValues: {
       email: "",
       password: "",
-      name: "",
-      phone: "",
     },
     onSubmit: (values) => {
       console.log(values);
@@ -29,7 +27,7 @@ export default function Home() {
       </Head>
       <div className={styles.gridcontainer}>
         <Grid>
-          <div className={styles.card}>
+          <div className={styles.logincard}>
             <div className={styles.cardheader}>
               <Image alt="logo" src={logo} width="100" />
               <Text h5>Forcasting</Text>
@@ -40,60 +38,20 @@ export default function Home() {
             <form onSubmit={handleSubmit} className={styles.signupform}>
               <Grid>
                 <Input
-                  aria-label="name"
-                  bordered
-                  fullWidth
-                  color="primary"
-                  size="lg"
-                  placeholder="Full Name"
-                  type="text"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid>
-                <Input
-                  aria-label="tel"
-                  bordered
-                  fullWidth
-                  color="primary"
-                  size="lg"
-                  placeholder="Phone Number"
-                  type="tel"
-                  name="phone"
-                  value={values.phone}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid>
-                <Input
-                  aria-label="tel"
-                  bordered
-                  fullWidth
-                  color="primary"
-                  size="lg"
-                  placeholder="Country"
-                  type="tel"
-                  name="phone"
-                  value={values.phone}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid>
-                <Input
                   aria-label="email"
                   bordered
                   fullWidth
                   color="primary"
                   size="lg"
                   placeholder="Email"
+                  contentLeft={<Mail fill="currentColor" />}
                   type="email"
                   name="email"
                   value={values.email}
                   onChange={handleChange}
                 />
               </Grid>
+
               <Grid>
                 <Input.Password
                   aria-label="password"
@@ -102,28 +60,26 @@ export default function Home() {
                   color="primary"
                   size="lg"
                   placeholder="Password"
+                  contentLeft={<Password fill="currentColor" />}
                   value={values.password}
                   onChange={handleChange}
                   name="password"
                 />
               </Grid>
+              <Row>
+                <Checkbox size="xs" defaultSelected={false}>
+                  Remember me
+                </Checkbox>
+              </Row>
               <Grid>
                 <Button type="submit" className={styles.Continuebtn} auto>
-                  Continue
+                  Login
                 </Button>
               </Grid>
             </form>
             <Grid className={styles.policylink}>
-              <Text weight={"light"}>
-                By registering you agree to the Forcasting.{" "}
-                <Link href="/verify">Terms of Use</Link> {""}
-                and <Link href="/verify">Privacy Policy.</Link>
-              </Text>
-            </Grid>
-            <Grid className={styles.policylink}>
               <Text>
-                Already have an Account ? {""}
-                <Link href="/login">Login</Link>
+                Don’t have an account ?<Link href="/"> Signup</Link>
               </Text>
             </Grid>
           </div>
